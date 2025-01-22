@@ -39,11 +39,5 @@ async def reverse_string(request: StringRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
 @app.get("/concatenate/{text}")
-async def concatenate_string(text: str):
-    try:
-        result = text + text
-        
-        return StringResponse(result=result)
-        
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
+
+
