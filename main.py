@@ -4,7 +4,6 @@ from datetime import datetime
 import os
 
 app = FastAPI()
-
 STORAGE_DIR = "string_operations"
 os.makedirs(STORAGE_DIR, exist_ok=True)
 
@@ -30,7 +29,6 @@ async def reverse_string(request: StringRequest):
             filename += '.txt'
             
         file_path = os.path.join(STORAGE_DIR, filename)
-        
         with open(file_path, 'w') as f:
             f.write(reversed_text)
             
@@ -40,17 +38,5 @@ async def reverse_string(request: StringRequest):
             "filename": filename,
             "file_path": file_path
         }
-        
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
-
-
-@app.get("/concatenate/{text}")
-async def concatenate_string(text: str):
-    try:
-        result = text + text
-        
-        return StringResponse(result=result)
-        
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
